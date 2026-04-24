@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express, { ErrorRequestHandler } from 'express';
+import cors from 'cors';
 import path from 'path';
 import { SERVER_CONFIG } from './config/constants';
 import { errorHandler } from './middleware/errorHandler';
@@ -8,6 +9,14 @@ import materialsRoutes from './routes/materials';
 import adminRoutes from './routes/admin';
 
 const app = express();
+
+/**
+ * CORS Configuration
+ */
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  credentials: true,
+}));
 
 /**
  * Static Files
